@@ -1,0 +1,644 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.13.18, pytest-9.2.0, pluggy-1.7.0 -- /Users/test-user/Documents/playwright_project/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/test-user/Documents/playwright_project
+plugins: playwright-0.10.0
+collecting ... collected 9 items
+
+test_web.py::test_checkout_validation[chromium] 
+=== TC01: Checkout validation ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Validation message - #first-name
+Expected: Error: First Name is required
+Actual:   Error: First Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #first-name = Jan
+
+Validation message - #last-name
+Expected: Error: Last Name is required
+Actual:   Error: Last Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #last-name = Novak
+
+Validation message - #postal-code
+Expected: Error: Postal Code is required
+Actual:   Error: Postal Code is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #postal-code = 40001
+
+Checkout with all required fields completed
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+PASSED
+test_web.py::test_product_sorting[chromium] 
+=== TC02: Product sorting ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Original product catalogue:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Onesie: $7.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Original product count: 6
+
+Ascending product catalogue:
+Sauce Labs Onesie: $7.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Fleece Jacket: $49.99
+
+Ascending price order
+Expected: [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Actual:   [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Result: PASS
+
+Ascending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Ascending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+
+Descending product catalogue:
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Onesie: $7.99
+
+Descending price order
+Expected: [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Actual:   [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Result: PASS
+
+Descending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Descending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+PASSED
+test_web.py::test_complete_purchase[chromium] 
+=== TC03: Complete purchase ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Selected products:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+
+Cart badge after adding products
+Expected: 3
+Actual:   3
+Result: PASS
+
+Shopping cart page
+Expected: https://www.saucedemo.com/cart.html
+Actual:   https://www.saucedemo.com/cart.html
+Result: PASS
+
+Removed product: Sauce Labs Bike Light
+
+Cart badge after removing product
+Expected: 2
+Actual:   2
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Shopping cart contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Checkout data: Jan, Novak, 40001
+
+Checkout overview page
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Checkout overview contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Order subtotal
+Expected: 45.98
+Actual:   45.98
+Result: PASS
+
+Displayed tax: $3.68
+
+Tax is non-negative
+Expected: True
+Actual:   True
+Result: PASS
+
+Order total
+Expected: 49.66
+Actual:   49.66
+Result: PASS
+
+Order confirmation
+Expected: Thank you for your order!
+Actual:   Thank you for your order!
+Result: PASS
+
+Order confirmation page
+Expected: https://www.saucedemo.com/checkout-complete.html
+Actual:   https://www.saucedemo.com/checkout-complete.html
+Result: PASS
+
+Cart badge visibility after purchase
+Expected: False
+Actual:   False
+Result: PASS
+PASSED
+test_web.py::test_checkout_validation[firefox] 
+=== TC01: Checkout validation ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Validation message - #first-name
+Expected: Error: First Name is required
+Actual:   Error: First Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #first-name = Jan
+
+Validation message - #last-name
+Expected: Error: Last Name is required
+Actual:   Error: Last Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #last-name = Novak
+
+Validation message - #postal-code
+Expected: Error: Postal Code is required
+Actual:   Error: Postal Code is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #postal-code = 40001
+
+Checkout with all required fields completed
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+PASSED
+test_web.py::test_product_sorting[firefox] 
+=== TC02: Product sorting ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Original product catalogue:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Onesie: $7.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Original product count: 6
+
+Ascending product catalogue:
+Sauce Labs Onesie: $7.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Fleece Jacket: $49.99
+
+Ascending price order
+Expected: [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Actual:   [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Result: PASS
+
+Ascending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Ascending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+
+Descending product catalogue:
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Onesie: $7.99
+
+Descending price order
+Expected: [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Actual:   [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Result: PASS
+
+Descending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Descending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+PASSED
+test_web.py::test_complete_purchase[firefox] 
+=== TC03: Complete purchase ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Selected products:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+
+Cart badge after adding products
+Expected: 3
+Actual:   3
+Result: PASS
+
+Shopping cart page
+Expected: https://www.saucedemo.com/cart.html
+Actual:   https://www.saucedemo.com/cart.html
+Result: PASS
+
+Removed product: Sauce Labs Bike Light
+
+Cart badge after removing product
+Expected: 2
+Actual:   2
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Shopping cart contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Checkout data: Jan, Novak, 40001
+
+Checkout overview page
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Checkout overview contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Order subtotal
+Expected: 45.98
+Actual:   45.98
+Result: PASS
+
+Displayed tax: $3.68
+
+Tax is non-negative
+Expected: True
+Actual:   True
+Result: PASS
+
+Order total
+Expected: 49.66
+Actual:   49.66
+Result: PASS
+
+Order confirmation
+Expected: Thank you for your order!
+Actual:   Thank you for your order!
+Result: PASS
+
+Order confirmation page
+Expected: https://www.saucedemo.com/checkout-complete.html
+Actual:   https://www.saucedemo.com/checkout-complete.html
+Result: PASS
+
+Cart badge visibility after purchase
+Expected: False
+Actual:   False
+Result: PASS
+PASSED
+test_web.py::test_checkout_validation[webkit] 
+=== TC01: Checkout validation ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Validation message - #first-name
+Expected: Error: First Name is required
+Actual:   Error: First Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #first-name = Jan
+
+Validation message - #last-name
+Expected: Error: Last Name is required
+Actual:   Error: Last Name is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #last-name = Novak
+
+Validation message - #postal-code
+Expected: Error: Postal Code is required
+Actual:   Error: Postal Code is required
+Result: PASS
+
+Checkout page remains unchanged
+Expected: https://www.saucedemo.com/checkout-step-one.html
+Actual:   https://www.saucedemo.com/checkout-step-one.html
+Result: PASS
+Input entered: #postal-code = 40001
+
+Checkout with all required fields completed
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+PASSED
+test_web.py::test_product_sorting[webkit] 
+=== TC02: Product sorting ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Original product catalogue:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Onesie: $7.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Original product count: 6
+
+Ascending product catalogue:
+Sauce Labs Onesie: $7.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Fleece Jacket: $49.99
+
+Ascending price order
+Expected: [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Actual:   [Decimal('7.99'), Decimal('9.99'), Decimal('15.99'), Decimal('15.99'), Decimal('29.99'), Decimal('49.99')]
+Result: PASS
+
+Ascending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Ascending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+
+Descending product catalogue:
+Sauce Labs Fleece Jacket: $49.99
+Sauce Labs Backpack: $29.99
+Sauce Labs Bolt T-Shirt: $15.99
+Test.allTheThings() T-Shirt (Red): $15.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Onesie: $7.99
+
+Descending price order
+Expected: [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Actual:   [Decimal('49.99'), Decimal('29.99'), Decimal('15.99'), Decimal('15.99'), Decimal('9.99'), Decimal('7.99')]
+Result: PASS
+
+Descending product count
+Expected: 6
+Actual:   6
+Result: PASS
+
+Descending product data integrity
+Expected: [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Actual:   [('Sauce Labs Backpack', Decimal('29.99')), ('Sauce Labs Bike Light', Decimal('9.99')), ('Sauce Labs Bolt T-Shirt', Decimal('15.99')), ('Sauce Labs Fleece Jacket', Decimal('49.99')), ('Sauce Labs Onesie', Decimal('7.99')), ('Test.allTheThings() T-Shirt (Red)', Decimal('15.99'))]
+Result: PASS
+PASSED
+test_web.py::test_complete_purchase[webkit] 
+=== TC03: Complete purchase ===
+
+Login - inventory page
+Expected: https://www.saucedemo.com/inventory.html
+Actual:   https://www.saucedemo.com/inventory.html
+Result: PASS
+
+Selected products:
+Sauce Labs Backpack: $29.99
+Sauce Labs Bike Light: $9.99
+Sauce Labs Bolt T-Shirt: $15.99
+
+Cart badge after adding products
+Expected: 3
+Actual:   3
+Result: PASS
+
+Shopping cart page
+Expected: https://www.saucedemo.com/cart.html
+Actual:   https://www.saucedemo.com/cart.html
+Result: PASS
+
+Removed product: Sauce Labs Bike Light
+
+Cart badge after removing product
+Expected: 2
+Actual:   2
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Shopping cart contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Checkout data: Jan, Novak, 40001
+
+Checkout overview page
+Expected: https://www.saucedemo.com/checkout-step-two.html
+Actual:   https://www.saucedemo.com/checkout-step-two.html
+Result: PASS
+
+Quantity - Sauce Labs Backpack
+Expected: 1
+Actual:   1
+Result: PASS
+
+Quantity - Sauce Labs Bolt T-Shirt
+Expected: 1
+Actual:   1
+Result: PASS
+
+Checkout overview contents
+Expected: {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Actual:   {'Sauce Labs Backpack': Decimal('29.99'), 'Sauce Labs Bolt T-Shirt': Decimal('15.99')}
+Result: PASS
+
+Order subtotal
+Expected: 45.98
+Actual:   45.98
+Result: PASS
+
+Displayed tax: $3.68
+
+Tax is non-negative
+Expected: True
+Actual:   True
+Result: PASS
+
+Order total
+Expected: 49.66
+Actual:   49.66
+Result: PASS
+
+Order confirmation
+Expected: Thank you for your order!
+Actual:   Thank you for your order!
+Result: PASS
+
+Order confirmation page
+Expected: https://www.saucedemo.com/checkout-complete.html
+Actual:   https://www.saucedemo.com/checkout-complete.html
+Result: PASS
+
+Cart badge visibility after purchase
+Expected: False
+Actual:   False
+Result: PASS
+PASSED
+
+=============================== warnings summary ===============================
+test_web.py::test_checkout_validation[chromium]
+  /Users/test-user/Documents/playwright_project/.venv/lib/python3.13/site-packages/_pytest/fixtures.py:1392: PytestRemovedIn10Warning: Session-scoped fixtures defined as instance methods are deprecated.
+  Instance attributes set in the 'base_url' fixture will NOT be visible to test methods,
+  as each test gets a new instance while the fixture runs only once per class.
+  Use a @classmethod decorator below @pytest.fixture and set attributes on cls instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method
+    fixturefunc = resolve_fixture_function(fixturedef, request)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: /Users/test-user/Documents/playwright_project/evidence/results_headed.xml -
+========================= 9 passed, 1 warning in 8.69s =========================
