@@ -1,0 +1,18 @@
+# Python virtual environments
+.venv/
+.venv_verify/
+
+# Python and pytest caches
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Temporary test outputs
+test-results/
+
+# Backup files and archives
+*.bak
+*.zip
+
+# Operating system files
+.DS_Store
